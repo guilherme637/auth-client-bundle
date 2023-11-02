@@ -11,8 +11,8 @@ class AuthClientExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container): void
     {
-        $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
-        $loader->load('service.yaml');
+        $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config/'));
+        $loader->load('services.yaml');
 
         $this->processConfiguration(new Configuration(), $configs);
     }
