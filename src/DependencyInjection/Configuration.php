@@ -9,7 +9,7 @@ class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder('zuske_auth_client');
+        $treeBuilder = new TreeBuilder('auth_client');
 
         $treeBuilder->getRootNode()
             ->children()
