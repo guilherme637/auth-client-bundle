@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Auth;
+namespace Zuske\AuthClient\Controller;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
