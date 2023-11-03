@@ -10,3 +10,9 @@ auth_client:
     grant_type: '%env(OAUTH_GRAN_TYPE)%'
     scope: 'w r'
 </pre>
+
+config no arquivo framework.yalm q instalou o bundle
+<pre>
+auth_client:
+    resource: "@AuthClientBundle/Resources/config/routing.yaml"
+</pre>

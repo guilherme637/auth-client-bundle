@@ -1,8 +1,8 @@
 <?php
 
-namespace Zuske\AuthClient\Resolver;
+namespace Zuske\AuthClient\Security;
 
-readonly class AuthServiceResolver implements AuthServiceResolverInterface
+readonly class AuthClientResolver implements AuthServiceResolverInterface
 {
     public function __construct(
         private ?string $resourceOwner,

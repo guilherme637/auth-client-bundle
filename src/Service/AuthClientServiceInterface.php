@@ -2,7 +2,7 @@
 
 namespace Zuske\AuthClient\Service;
 
-interface AuthServiceInterface
+interface AuthClientServiceInterface
 {
     public function makeLogin(string $pathInfo): string;
     public function makeAuthentication(string $code): string;

@@ -1,5 +1,7 @@
 services:
-  Zuske/AuthClient/Resolver/AuthServiceResolver:
-    class: Zuske\AuthClient\Resolver\AuthServiceResolver
-    autowire: true
-    arguments: ['%env(OAUTH_RESOURCE_OWNER)%', '%env(resolve:OAUTH_URL)%','%env(OAUTH_RESPONSE_TYPE)%', '%env(OAUTH_GRAN_TYPE)%', '%env(OAUTH_CLIENT_ID)%', '%env(OAUTH_CLIENT_SECRET)%', '%env(resolve:OAUTH_REDIRECT_URI)%', '%env(OAUTH_SCOPE)%']
+  Zuske\AuthClient\Security\AuthClientResolver:
+    public: true
+
+  Zuske\AuthClient\Controller\:
+    resource: '../../Controller/'
+    tags: ['controller.service_arguments']

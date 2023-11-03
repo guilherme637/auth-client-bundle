@@ -1,6 +1,6 @@
 <?php
 
-namespace Zuske\AuthClient\Resolver;
+namespace Zuske\AuthClient\Security;
 
 interface AuthServiceResolverInterface
 {

@@ -9,9 +9,9 @@ use Zuske\Adapter\Redis\RedisAdapterInterface;
 use Zuske\Adapter\Serializer\SerializerInterface;
 use Zuske\AuthClient\Assembler\AuthServiceAssembler;
 use Zuske\AuthClient\Exception\MakeLoginAgainException;
-use Zuske\AuthClient\Resolver\AuthServiceResolverInterface;
+use Zuske\AuthClient\Security\AuthServiceResolverInterface;
 
-class AuthService implements AuthServiceInterface
+class AuthClientClientService implements AuthClientServiceInterface
 {
     public function __construct(
         private readonly AuthServiceResolverInterface $authServiceResolver,

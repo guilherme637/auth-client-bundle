@@ -6,6 +6,7 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Zuske\AuthClient\Security\AuthClientResolver;
 
 class AuthClientExtension extends Extension
 {
@@ -14,6 +15,11 @@ class AuthClientExtension extends Extension
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yaml');
 
-        $this->processConfiguration(new Configuration(), $configs);
+        $config = $this->processConfiguration(new Configuration(), $configs);
+        $definition = $container->getDefinition(AuthClientResolver::class);
+
+        foreach ($config['auth'] as $value) {
+            $definition->addArgument($value);
+        }
     }
 }
