@@ -6,5 +6,5 @@ use Psr\Http\Message\ResponseInterface;
 
 interface ClientAuthServiceInterface
 {
-    public function makePullToken(array $tokenRequestDto): ResponseInterface;
+    public function makePullToken(array $tokenRequestDto, string $host = null): ResponseInterface;
 }

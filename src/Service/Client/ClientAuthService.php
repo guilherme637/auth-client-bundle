@@ -11,25 +11,27 @@ use Zuske\AuthClient\Security\OAuthClient;
 class ClientAuthService implements ClientAuthServiceInterface
 {
     private Client $client;
-    private OAuthClient $OAuthClient;
+    private OAuthClient $authClient;
 
-    public function __construct(OAuthClient $OAuthClient)
+    public function __construct(OAuthClient $authClient)
     {
         $this->client = new Client([
-            'base_uri' => $OAuthClient->getHost(),
             RequestOptions::VERIFY => false,
             RequestOptions::TIMEOUT => 15
         ]);
-        $this->OAuthClient = $OAuthClient;
+        $this->authClient = $authClient;
     }
 
     /**
      * @throws GuzzleException
      */
-    public function makePullToken(array $tokenRequestDto): ResponseInterface
+    public function makePullToken(array $tokenRequestDto, string $host = null): ResponseInterface
     {
-        return $this->client->post(
-            '/token',
+        $uri = !is_null($host) ? $host : $this->authClient->getHost();
+
+        return $this->client->request(
+            'POST',
+            $uri . '/token',
             [
                 RequestOptions::FORM_PARAMS => $tokenRequestDto
             ]
