@@ -3,8 +3,7 @@
 namespace Zuske\AuthClient\Service\Auth;
 
 use Auth\Token;
-use Symfony\Component\HttpFoundation\RequestStack;
-use Zuske\Adapter\Serializer\SerializerInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Zuske\AuthClient\Assembler\AuthServiceAssembler;
 use Zuske\AuthClient\Exception\MakeLoginAgainException;
 use Zuske\AuthClient\Security\OAuthClientInterface;
@@ -13,23 +12,22 @@ use Zuske\AuthClient\Service\Client\ClientAuthServiceInterface;
 class AuthClientService implements AuthClientServiceInterface
 {
     public function __construct(
-        private readonly OAuthClientInterface $authServiceResolver,
-        private RequestStack                  $requestStack,
+        private readonly OAuthClientInterface $authClient,
         private ClientAuthServiceInterface    $clientAuthService,
     ) {}
 
-    public function makeLogin(string $pathInfo): string
+    public function makeLogin(string $pathInfo, SessionInterface $session): string
     {
         $state = md5(rand(1, 1000));
-        $this->requestStack->getSession()->set('state', $state);
-        $this->requestStack->getSession()->set('refer_', $pathInfo);
+        $session->set('state', $state);
+        $session->set('refer_', $pathInfo);
 
-        return (new AuthServiceAssembler())->assemblerLogin($this->authServiceResolver, $pathInfo);
+        return (new AuthServiceAssembler())->assemblerLogin($this->authClient, $pathInfo);
     }
 
     public function makeAuthentication(string $code): \stdClass
     {
-        $tokenRequestDto = (new AuthServiceAssembler())->assemblerTokenPost($this->authServiceResolver, $code);
+        $tokenRequestDto = (new AuthServiceAssembler())->assemblerTokenPost($this->authClient, $code);
 
         try {
             $token = $this->clientAuthService->makePullToken($tokenRequestDto->toArray());
@@ -44,16 +42,16 @@ class AuthClientService implements AuthClientServiceInterface
             }
         }
 
-        return Token::decrypt($access_token, $this->authServiceResolver->getResourceOwner());
+        return Token::decrypt($access_token, $this->authClient->getResourceOwner());
     }
 
-    public function getRedirectRefer(): string
+    public function getRedirectRefer(SessionInterface $session): string
     {
-        $refer = $this->requestStack->getSession()->get('refer_');
+        $refer = $session->get('refer_');
 
-        $this->requestStack->getSession()->remove('refer_');
-        $this->requestStack->getSession()->remove('state');
+        $session->remove('refer_');
+        $session->remove('state');
 
-        return $this->authServiceResolver->getHost() . $refer;
+        return $this->authClient->getHost() . $refer;
     }
 }
