@@ -2,7 +2,7 @@
 
 namespace Zuske\AuthClient\Security;
 
-interface AuthServiceResolverInterface
+interface OAuthClientInterface
 {
     public function getResourceOwner(): ?string;
     public function getHost(): ?string;

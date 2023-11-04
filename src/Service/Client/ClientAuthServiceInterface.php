@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Client;
+namespace Zuske\AuthClient\Service\Client;
 
 use Psr\Http\Message\ResponseInterface;
 

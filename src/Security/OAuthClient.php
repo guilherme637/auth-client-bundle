@@ -2,17 +2,17 @@
 
 namespace Zuske\AuthClient\Security;
 
-readonly class AuthClientResolver implements AuthServiceResolverInterface
+readonly class OAuthClient implements OAuthClientInterface
 {
     public function __construct(
         private ?string $resourceOwner,
-        private ?string $host,
         private ?string $responseType,
         private ?string $grantType,
         private ?string $clientId,
         private ?string $clientSecret,
         private ?string $redirectUri,
         private ?string $scope,
+        private ?array $host,
     ) {
     }
 
@@ -23,7 +23,9 @@ readonly class AuthClientResolver implements AuthServiceResolverInterface
 
     public function getHost(): ?string
     {
-        return 'http://www' . $this->host;
+        $port = $this->host['port'] ? ':' . $this->host['port'] : '';
+
+        return 'http://www.' . $this->host['host'] . $port;
     }
 
     public function getResponseType(): ?string

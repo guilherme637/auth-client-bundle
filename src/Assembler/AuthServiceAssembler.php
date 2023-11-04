@@ -4,11 +4,11 @@ namespace Zuske\AuthClient\Assembler;
 
 use Zuske\AuthClient\Build\BuilderLogin;
 use Zuske\AuthClient\Dto\TokenRequestDto;
-use Zuske\AuthClient\Security\AuthClientResolver;
+use Zuske\AuthClient\Security\OAuthClient;
 
 class AuthServiceAssembler implements AuthServiceAssemblerInterface
 {
-    public function assemblerTokenPost(AuthClientResolver $authServiceResolver, string $code): TokenRequestDto
+    public function assemblerTokenPost(OAuthClient $authServiceResolver, string $code): TokenRequestDto
     {
         return new TokenRequestDto(
             $authServiceResolver->getGranType(),
@@ -19,7 +19,7 @@ class AuthServiceAssembler implements AuthServiceAssemblerInterface
         );
     }
 
-    public function assemblerLogin(AuthClientResolver $authServiceResolver, string $state): string
+    public function assemblerLogin(OAuthClient $authServiceResolver, string $state): string
     {
         return (new BuilderLogin())->build($authServiceResolver, $state);
     }

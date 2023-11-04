@@ -1,7 +1,17 @@
 services:
-  Zuske\AuthClient\Security\AuthClientResolver:
+  Symfony\Component\HttpFoundation\RequestStack:
     public: true
+    autowire: true
 
-  Zuske\AuthClient\Controller\:
-    resource: '../../Controller/'
-    tags: ['controller.service_arguments']
+  Zuske\AuthClient\Security\:
+    public: true
+    autowire: true
+    resource: '../../Security/'
+
+  Zuske\AuthClient\Service\:
+    public: true
+    autowire: true
+    resource: '../../Service/'
+
+  Zuske\AuthClient\Service\Client\ClientAuthService:
+    arguments: ['@Zuske\AuthClient\Security\OAuthClient']

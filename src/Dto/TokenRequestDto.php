@@ -61,4 +61,15 @@ class TokenRequestDto
     {
         $this->redirectId = $redirectId;
     }
+
+    public function toArray(): array
+    {
+        return [
+            'grantType' => $this->getGrantType(),
+            'clientId' => $this->getClientId(),
+            'code' => $this->getCode(),
+            'clientSecret' => $this->getClientSecret(),
+            'redirectId' => $this->getRedirectId(),
+        ];
+    }
 }

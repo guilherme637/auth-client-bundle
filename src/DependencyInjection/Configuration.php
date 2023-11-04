@@ -10,8 +10,9 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('auth_client');
+        $rootNode = $treeBuilder->getRootNode();
 
-        $treeBuilder->getRootNode()
+        $rootNode
             ->children()
                 ->arrayNode('auth')
                     ->children()
@@ -24,10 +25,6 @@ class Configuration implements ConfigurationInterface
                             ->defaultNull()
                         ->end()
                         ->scalarNode('client_secret')
-                            ->isRequired()
-                            ->defaultNull()
-                        ->end()
-                        ->scalarNode('host_client')
                             ->isRequired()
                             ->defaultNull()
                         ->end()
@@ -47,11 +44,21 @@ class Configuration implements ConfigurationInterface
                             ->isRequired()
                             ->defaultNull()
                         ->end()
-                    ->end()
+                        ->arrayNode('host_client')
+                            ->children()
+                                ->scalarNode('host')
+                                    ->isRequired()
+                                    ->defaultNull()
+                                ->end()
+                                ->integerNode('port')
+                                    ->isRequired()
+                                    ->defaultNull()
+                                ->end()
+                            ->end()
+                        ->end()
                 ->end()
             ->end()
         ;
-
         return $treeBuilder;
     }
 }
