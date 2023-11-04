@@ -22,7 +22,7 @@ class AuthClientService implements AuthClientServiceInterface
         $session->set('state', $state);
         $session->set('refer_', $pathInfo);
 
-        return (new AuthServiceAssembler())->assemblerLogin($this->authClient, $pathInfo);
+        return (new AuthServiceAssembler())->assemblerLogin($this->authClient, $state);
     }
 
     public function makeAuthentication(string $code): \stdClass
@@ -37,9 +37,7 @@ class AuthClientService implements AuthClientServiceInterface
                 throw new MakeLoginAgainException();
             }
 
-            if ($exception->getCode() === 500) {
-                throw $exception;
-            }
+            throw $exception;
         }
 
         return Token::decrypt($access_token, $this->authClient->getResourceOwner());
