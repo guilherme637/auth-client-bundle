@@ -1,5 +1,7 @@
 
 <pre>
+//auth_client.yaml
+
 auth_client:
   auth:
     resource_owner: '%env(OAUTH_RESOURCE_OWNER)%'
@@ -16,5 +18,5 @@ auth_client:
 
 <pre>
 <h2>Fluxograma</h2>
-<img src="https://lucid.app/lucidchart/invitations/accept/inv_c55e36fb-c732-4a20-bcb3-926d40f9b5bb" title="fluxograma"/>
+<img src="/auth-client-bundle/docs/fluxograma.png"/>
 </pre>
