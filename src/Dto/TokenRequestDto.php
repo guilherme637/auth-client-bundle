@@ -65,11 +65,11 @@ class TokenRequestDto
     public function toArray(): array
     {
         return [
-            'grantType' => $this->getGrantType(),
-            'clientId' => $this->getClientId(),
+            'grant_type' => $this->getGrantType(),
+            'client_id' => $this->getClientId(),
             'code' => $this->getCode(),
-            'clientSecret' => $this->getClientSecret(),
-            'redirectId' => $this->getRedirectId(),
+            'client_secret' => $this->getClientSecret(),
+            'redirect_id' => $this->getRedirectId(),
         ];
     }
 }
