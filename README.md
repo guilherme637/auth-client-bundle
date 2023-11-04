@@ -18,5 +18,5 @@ auth_client:
 
 <pre>
 <h2>Fluxograma</h2>
-<img src="/auth-client-bundle/docs/fluxograma.png"/>
+<img src="./docs/fluxograma.png"/>
 </pre>
