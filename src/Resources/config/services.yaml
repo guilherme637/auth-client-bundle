@@ -13,5 +13,5 @@ services:
     autowire: true
     resource: '../../Service/'
 
-  Zuske\AuthClient\Service\Client\ClientAuthService:
-    arguments: ['@Zuske\AuthClient\Security\OAuthClient']
+#  Zuske\AuthClient\Service\Client\ClientAuthService:
+#    arguments: ['@Zuske\AuthClient\Security\OAuthClient']

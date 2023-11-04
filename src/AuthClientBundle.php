@@ -8,8 +8,4 @@ use Zuske\AuthClient\DependencyInjection\AuthClientExtension;
 
 class AuthClientBundle extends Bundle
 {
-    public function getContainerExtension(): ?ExtensionInterface
-    {
-        return new AuthClientExtension();
-    }
 }

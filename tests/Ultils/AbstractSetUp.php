@@ -12,25 +12,25 @@ class AbstractSetUp extends TestCase
 
     protected function setUp(): void
     {
-        $this->container = new ContainerBuilder();
+        $this->containerBuilder = new ContainerBuilder();
         $extension = new AuthClientExtension();
-        $extension->load($this->getConfigs(), $this->container);
-        $this->container->compile();
+        $extension->load($this->getConfigs(), $this->containerBuilder);
+        $this->containerBuilder->compile();
     }
 
     public function getConfigs(): array
     {
         $configs['auth_client'] = [
             'auth'=> [
-                'resource_owner' => 'teste1',
-                'client_id' => 'teste2',
-                'client_secret' => 'teste3',
-                'redirect_uris' => 'teste5',
-                'response_type' => 'teste6',
-                'grant_type' => 'teste8',
-                'scope' => 'teste9',
+                'resource_owner' => 'auth-client',
+                'client_id' => '132118881219cx12e1ds1132',
+                'client_secret' => '132asd1231Ada2118881219cx12e1ds1132',
+                'redirect_uris' => 'https://auth-client.com.br',
+                'response_type' => 'code',
+                'grant_type' => 'authorization_code',
+                'scope' => 'r w',
                 'host_client' => [
-                    'host' => 'teste',
+                    'host' => 'http://auth-service.com.br',
                     'port' => 3031
                 ],
             ]

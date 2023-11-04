@@ -1,18 +1,20 @@
+
 <pre>
 auth_client:
   auth:
     resource_owner: '%env(OAUTH_RESOURCE_OWNER)%'
     client_id: '%env(OAUTH_CLIENT_ID)%'
     client_secret: '%env(OAUTH_CLIENT_SECRET)%'
-    host_client: '%env(resolve:OAUTH_URL)%'
     redirect_uris: '%env(resolve:OAUTH_REDIRECT_URI)%'
     response_type: '%env(OAUTH_RESPONSE_TYPE)%'
     grant_type: '%env(OAUTH_GRAN_TYPE)%'
     scope: 'w r'
+    host_client:
+        host: '%env(resolve:OAUTH_URL)%'
+        port: 8080
 </pre>
 
-config no arquivo framework.yalm q instalou o bundle
 <pre>
-auth_client:
-    resource: "@AuthClientBundle/Resources/config/routing.yaml"
+<h2>Fluxograma</h2>
+<img src="/home/guilherme/Downloads/_Fluxograma de estado atual_futuro - Atual.png" title="fluxograma"/>
 </pre>
