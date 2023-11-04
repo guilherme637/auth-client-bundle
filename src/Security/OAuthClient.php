@@ -6,13 +6,13 @@ readonly class OAuthClient implements OAuthClientInterface
 {
     public function __construct(
         private ?string $resourceOwner,
-        private ?string $responseType,
-        private ?string $grantType,
         private ?string $clientId,
         private ?string $clientSecret,
         private ?string $redirectUri,
+        private ?string $responseType,
+        private ?string $grantType,
         private ?string $scope,
-        private ?array $host,
+        private ?array $host
     ) {
     }
 

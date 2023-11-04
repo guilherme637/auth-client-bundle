@@ -2,7 +2,7 @@
 
 namespace Zuske\AuthClient\Assembler;
 
-use Zuske\AuthClient\Build\BuilderLogin;
+use Zuske\AuthClient\Build\BuilderUrlLogin;
 use Zuske\AuthClient\Dto\TokenRequestDto;
 use Zuske\AuthClient\Security\OAuthClient;
 
@@ -21,6 +21,6 @@ class AuthServiceAssembler implements AuthServiceAssemblerInterface
 
     public function assemblerLogin(OAuthClient $authServiceResolver, string $state): string
     {
-        return (new BuilderLogin())->build($authServiceResolver, $state);
+        return (new BuilderUrlLogin())->build($authServiceResolver, $state);
     }
 }

@@ -3,3 +3,5 @@ vendor/
 devops/
 docker-compose.yml
 teste.php
+.phpunit.result.cache
+phpunit.xml.bak
