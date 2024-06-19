@@ -4,9 +4,6 @@ namespace Zuske\AuthClient\Security;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 
-/**
- * @method string getUserIdentifier()
- */
 class Usuario implements UserInterface
 {
     private int $id;
@@ -50,6 +47,11 @@ class Usuario implements UserInterface
     }
 
     public function getUsername(): string
+    {
+        return $this->username;
+    }
+
+    public function getUserIdentifier(): string
     {
         return $this->username;
     }
